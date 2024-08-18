@@ -1,19 +1,18 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test('Amazon selector test', async ({ page }) => {
+  await page.goto('https://www.amazon.es/');
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
+  await page.locator('#sp-cc-accept').click();
+
+  await page.locator('#twotabsearchtextbox').fill('proteina');
+
+  await page.locator('.s-suggestion-container').nth(0).click();
+
+  await page.locator('[data-component-type="s-search-result"]:not(.AdHolder)').nth(2).locator('.s-product-image-container').click();
+
+  await expect(page.locator('#imgTagWrapperId')).toBeVisible();
+
 });
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
-
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
-});
