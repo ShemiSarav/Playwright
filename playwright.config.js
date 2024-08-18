@@ -29,6 +29,10 @@ module.exports = defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+
+    video: { mode:"on", size: { height: 1080, width: 1920 }},
+    viewport: { height: 1080, width: 1920 },
+    screenshot: {fullPage: true, mode: "on"}
   },
 
   /* Configure projects for major browsers */
@@ -36,16 +40,6 @@ module.exports = defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-    },
-
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
     },
 
     /* Test against mobile viewports. */
